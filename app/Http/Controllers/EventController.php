@@ -35,13 +35,23 @@ class EventController extends Controller
 
             $responseBodyJSON = $response->getBody()->getContents();
             $responseBodyDecoded = json_decode($responseBodyJSON, true);
+            $amount = "" . $responseBodyDecoded ["data"]["AMOUNT"] . '.00';
+            $purchaseAmount = "" . $responseBodyDecoded ["data"]["PURCHASEAMOUNT"] . '.00';
+            $mallID = "" . env("MALLID");
+            $sharedKey = "" . env("SHAREDKEY");
+            $transIDMerchant = "" . $responseBodyDecoded["data"]["TRANSIDMERCHANT"];
 
-            $words = $responseBodyDecoded["data"]["AMOUNT"] . env("MALLID") . env("SHAREDKEY") . $responseBodyDecoded["data"]["TRANSIDMERCHANT"];
+            $words = $amount . $mallID . $sharedKey . $transIDMerchant;
             $sha1Words = sha1($words);
 
             return view('doku_invoice', [
                 'res_data' => $responseBodyDecoded,
                 'sha1Words' => $sha1Words,
+                'amount' => $amount,
+                'mallID' => $mallID,
+                'sharedKey' => $sharedKey,
+                'transIDMerchant' => $transIDMerchant,
+                'purchaseAmount' => $purchaseAmount,
             ]);
         } catch (BadResponseException $bre) {
             $decodedResBody = json_decode($bre->getResponse()->getBody()->getContents(), true);
