@@ -40,41 +40,59 @@
                 </div>
             </div>
 
-            <form id="sign-up" method="post" action="https://staging.doku.com/Suite/Receive">
-                <input type="text" id="AMOUNT" name="AMOUNT"
-                       value="{{$amount}}">
+            <form method="post" action="https://staging.doku.com/Suite/Receive">
 
-                <input type="text" id="PURCHASEAMOUNT" name="PURCHASEAMOUNT"
-                       value="{{$purchaseAmount}}">
-                <input type="text" id="TRANSIDMERCHANT" name="TRANSIDMERCHANT"
-                       value="{{"INVOICE-".$transIDMerchant}}">
-                <input type="text" id="WORDS" name="WORDS"
-                       value="{{$sha1Words}}">
-                <input type="text" id="REQUESTDATETIME" name="REQUESTDATETIME"
-                       value="{{$res_data["data"]["REQUESTDATETIME"]}}">
-                <input type="text" id="CURRENCY" name="CURRENCY"
-                       value="{{$res_data["data"]["CURRENCY"]}}">
-                <input type="text" id="PURCHASECURRENCY" name="PURCHASECURRENCY"
-                       value="{{$res_data["data"]["PURCHASECURRENCY"]}}">
-                <input type="text" id="SESSIONID" name="SESSIONID"
-                       value="740ogm6ifxi65wn">
-                <input type="text" id="NAME" name="NAME"
-                       value="{{$res_data["data"]["NAME"]}}">
-                <input type="text" id="EMAIL" name="EMAIL"
-                       value="{{$res_data["data"]["EMAIL"]}}">
+    Words
+    <input class="form-control filled" id="WORDS" name="WORDS" type="text" value="d0ec612ba33ea45bc4745fc134f446040c5fe894" /><br>
+    Trans ID
+    <input name="TRANSIDMERCHANT" id="TRANSIDMERCHANT" type="text" maxlength="120" class="form-control filled" value="INVOICE-100" /><br>
+    Mall ID
+    <input name="MALLID" id="MALLID" type="text" placeholder="Mall ID" maxlength="120" value="11614766"/><br>
+    Amount
+    <input name="AMOUNT" id="amount" type="text" class="form-control filled" value="21.00" /><br>
+    Shared Key
+    <input name="SHAREDKEY" id="SHAREDKEY" type="text" maxlength="120" class="form-control" value="2BLlFButtyMA" /><br>
 
-                <input type="text" id="BASKET" name="BASKET"
-                       value="{{$res_data["data"]["BASKET"]}}">
-                <input type="text" value="{{$mallID}}" id="mall-id" name="MALLID" hidden>
-                <input type="text" value="{{$sharedKey}}" id="shared-key" name="SHAREDKEY" hidden>
-                <input type="text" value="NA" id="chain-merchant" name="CHAINMERCHANT" hidden>
+    Basket
+    <input name="Basket" id="Basket" type="text" maxlength="120" class="form-control filled" value="pemasangan iklan,215000," /><br>
+    Chain Merchant
+    <input name="CHAINMERCHANT" id="chainmerchant" type="text" maxlength="120" class="form-control filled" value="NA" /><br>
+    Session ID
+    <input name="SESSIONID" id="SESSIONID" type="text" class="form-control filled" value="atl4ju112v62zzn" /><br>
+    Request date time
+    <input name="REQUESTDATETIME" id="REQUESTDATETIME" type="text" class="form-control filled"value="20190718030651" /><br>
+    Service ID
+    <input name="SERVICEID" id="SERVICEID" type="hidden" class="form-control" value="3" /><br>
+    Currency
+    <input name="CURRENCY" id="CURRENCY" type="text" class="form-control filled" value="360" /><br>
+    Purchase Currency
+    <input name="PURCHASECURRENCY" id="PURCHASECURRENCY" type="text" class="form-control filled" value="360" /><br>
+    Purchase Amount
+    <input name="PURCHASEAMOUNT" id="PURCHASEAMOUNT" type="text" maxlength="120" class="form-control filled" value="215000" /><br>
+    Payment channel
+    <select name="PAYMENTCHANNEL" id="PAYMENTCHANNEL" class="form-control">
+      <option value="">All</option>
+    </select><br><br>
+    Data diri<br><br>
+    Name
+    <input name="NAME" id="NAME" type="text" class="form-control filled" value="John Doe" /><br>
+    Email
+    <input name="EMAIL" id="EMAIL" type="text" class="form-control filled" value="johndoe@gmail.com" /><br>
+    Mobile Phone
+    <input name="MOBILEPHONE" id="MOBILEPHONE" type="text" class="form-control filled" value="08111111111" /><br>
+    Address
+    <input name="ADDRESS" id="ADDRESS" type="text" class="form-control filled" value="Jl. Jendral Sudirman" /><br>
+    Country
+    <input name="COUNTRY" id="COUNTRY" type="text" class="form-control filled" value="ID" /><br>
+    Zip Code
+    <input name="ZIPCODE" id="ZIPCODE" type="text" class="form-control filled" value="16710" /><br>
+    City
+    <input name="CITY" id="CITY" type="City" class="form-control filled" value="Jakarta" /><br>
 
-                <div class="submit-button">
-                    <button class="btn btn-common" id="form-submit" type="submit">Submit</button>
-                    <div id="msgSubmit" class="h3 text-center hidden"></div>
-                    <div class="clearfix"></div>
-                </div>
-            </form>
+
+    <button class="btn-default" type="submit">TEST PAYMENT</button>
+
+</form>
         </div>
     </section>
 @endsection
