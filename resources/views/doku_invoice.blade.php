@@ -43,41 +43,41 @@
             <form method="post" action="https://staging.doku.com/Suite/Receive">
 
     Words
-    <input class="form-control filled" id="WORDS" name="WORDS" type="text" value="d0ec612ba33ea45bc4745fc134f446040c5fe894" /><br>
+    <input class="form-control filled" id="WORDS" name="WORDS" type="text" value="{{$sha1Words}}" /><br>
     Trans ID
-    <input name="TRANSIDMERCHANT" id="TRANSIDMERCHANT" type="text" maxlength="120" class="form-control filled" value="INVOICE-100" /><br>
+    <input name="TRANSIDMERCHANT" id="TRANSIDMERCHANT" type="text" maxlength="120" class="form-control filled" value="{{$transIDMerchant}}" /><br>
     Mall ID
-    <input name="MALLID" id="MALLID" type="text" placeholder="Mall ID" maxlength="120" value="11614766"/><br>
+    <input name="MALLID" id="MALLID" type="text" placeholder="Mall ID" maxlength="120" value="{{$mallID}}"/><br>
     Amount
-    <input name="AMOUNT" id="amount" type="text" class="form-control filled" value="21.00" /><br>
+    <input name="AMOUNT" id="amount" type="text" class="form-control filled" value="{{$amount}}" /><br>
     Shared Key
-    <input name="SHAREDKEY" id="SHAREDKEY" type="text" maxlength="120" class="form-control" value="2BLlFButtyMA" /><br>
+    <input name="SHAREDKEY" id="SHAREDKEY" type="text" maxlength="120" class="form-control" value="{{$sharedKey}}" /><br>
 
     Basket
-    <input name="Basket" id="Basket" type="text" maxlength="120" class="form-control filled" value="pemasangan iklan,215000," /><br>
+    <input name="Basket" id="Basket" type="text" maxlength="120" class="form-control filled" value="{{$res_data["data"]["BASKET"]}}" /><br>
     Chain Merchant
     <input name="CHAINMERCHANT" id="chainmerchant" type="text" maxlength="120" class="form-control filled" value="NA" /><br>
     Session ID
-    <input name="SESSIONID" id="SESSIONID" type="text" class="form-control filled" value="atl4ju112v62zzn" /><br>
+    <input name="SESSIONID" id="SESSIONID" type="text" class="form-control filled" value="740ogm6ifxi65wn" /><br>
     Request date time
-    <input name="REQUESTDATETIME" id="REQUESTDATETIME" type="text" class="form-control filled"value="20190718030651" /><br>
+    <input name="REQUESTDATETIME" id="REQUESTDATETIME" type="text" class="form-control filled"value="{{$res_data["data"]["REQUESTDATETIME"]}}" /><br>
     Service ID
     <input name="SERVICEID" id="SERVICEID" type="hidden" class="form-control" value="3" /><br>
     Currency
-    <input name="CURRENCY" id="CURRENCY" type="text" class="form-control filled" value="360" /><br>
+    <input name="CURRENCY" id="CURRENCY" type="text" class="form-control filled" value="{{$res_data["data"]["CURRENCY"]}}" /><br>
     Purchase Currency
-    <input name="PURCHASECURRENCY" id="PURCHASECURRENCY" type="text" class="form-control filled" value="360" /><br>
+    <input name="PURCHASECURRENCY" id="PURCHASECURRENCY" type="text" class="form-control filled" value="{{$res_data["data"]["PURCHASECURRENCY"]}}" /><br>
     Purchase Amount
-    <input name="PURCHASEAMOUNT" id="PURCHASEAMOUNT" type="text" maxlength="120" class="form-control filled" value="215000" /><br>
+    <input name="PURCHASEAMOUNT" id="PURCHASEAMOUNT" type="text" maxlength="120" class="form-control filled" value="{{$purchaseAmount}}" /><br>
     Payment channel
     <select name="PAYMENTCHANNEL" id="PAYMENTCHANNEL" class="form-control">
       <option value="">All</option>
     </select><br><br>
     Data diri<br><br>
     Name
-    <input name="NAME" id="NAME" type="text" class="form-control filled" value="John Doe" /><br>
+    <input name="NAME" id="NAME" type="text" class="form-control filled" value="{{$res_data["data"]["NAME"]}}" /><br>
     Email
-    <input name="EMAIL" id="EMAIL" type="text" class="form-control filled" value="johndoe@gmail.com" /><br>
+    <input name="EMAIL" id="EMAIL" type="text" class="form-control filled" value="{{$res_data["data"]["EMAIL"]}}" /><br>
     Mobile Phone
     <input name="MOBILEPHONE" id="MOBILEPHONE" type="text" class="form-control filled" value="08111111111" /><br>
     Address

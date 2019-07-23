@@ -35,11 +35,11 @@ class EventController extends Controller
 
             $responseBodyJSON = $response->getBody()->getContents();
             $responseBodyDecoded = json_decode($responseBodyJSON, true);
-            $amount = "" . $responseBodyDecoded ["data"]["AMOUNT"] . '.00';
+            $amount = (string) $responseBodyDecoded ["data"]["AMOUNT"] . '.00';
             $purchaseAmount = "" . $responseBodyDecoded ["data"]["PURCHASEAMOUNT"] . '.00';
             $mallID = "" . env("MALLID");
             $sharedKey = "" . env("SHAREDKEY");
-            $transIDMerchant = "" . $responseBodyDecoded["data"]["TRANSIDMERCHANT"];
+            $transIDMerchant = "" . "INVOICE-". $responseBodyDecoded["data"]["TRANSIDMERCHANT"];
 
             $words = $amount . $mallID . $sharedKey . $transIDMerchant;
             $sha1Words = sha1($words);
