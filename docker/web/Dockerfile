@@ -17,6 +17,10 @@ COPY default.conf /etc/apache2/sites-enabled/000-default.conf
 
 WORKDIR /var/www/app
 
+LABEL traefik.docker.network=${DOCKER_NETWORK}
+LABEL traefik.rest.frontend.rule=Host:${REST_SUBDOMAIN}
+LABEL traefik.rest.port=${REST_PORT}
+
 CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
 
 EXPOSE 80
