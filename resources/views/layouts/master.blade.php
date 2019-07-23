@@ -26,6 +26,8 @@
     <!-- Responsive Style -->
     <link rel="stylesheet" type="text/css" href="{{asset('/css/responsive.css')}}">
 
+    @yield('css.addition')
+
 </head>
 <body>
 
@@ -60,5 +62,9 @@
 <script src="{{asset('/js/map.js')}}"></script>
 <script type="text/javascript"
         src="//maps.googleapis.com/maps/api/js?key=AIzaSyCsa2Mi2HqyEcEnM1urFSIGEpvualYjwwM"></script>
+
+@yield('js.addition')
+
+@yield('js')
 </body>
 </html>

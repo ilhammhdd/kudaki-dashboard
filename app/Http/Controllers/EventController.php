@@ -35,19 +35,19 @@ class EventController extends Controller
 
             $responseBodyJSON = $response->getBody()->getContents();
             $responseBodyDecoded = json_decode($responseBodyJSON, true);
-            $amount = (string) $responseBodyDecoded ["data"]["AMOUNT"] . '.00';
-            $purchaseAmount = "" . $responseBodyDecoded ["data"]["PURCHASEAMOUNT"] . '.00';
-            $mallID = "" . env("MALLID");
-            $sharedKey = "" . env("SHAREDKEY");
-            $transIDMerchant = "" . "INVOICE-". $responseBodyDecoded["data"]["TRANSIDMERCHANT"];
+//            $amount = (string)$responseBodyDecoded ["data"]["AMOUNT"] . '.00';
+            $purchaseAmount = (string)$responseBodyDecoded ["data"]["PURCHASEAMOUNT"] . '.00';
+            $mallID = (string)env("MALLID");
+            $sharedKey = (string)env("SHAREDKEY");
+            $transIDMerchant = (string)"INVOICE-" . $responseBodyDecoded["data"]["TRANSIDMERCHANT"];
 
-            $words = $amount . $mallID . $sharedKey . $transIDMerchant;
+            $words = $purchaseAmount. $mallID . $sharedKey . $transIDMerchant;
             $sha1Words = sha1($words);
+
 
             return view('doku_invoice', [
                 'res_data' => $responseBodyDecoded,
                 'sha1Words' => $sha1Words,
-                'amount' => $amount,
                 'mallID' => $mallID,
                 'sharedKey' => $sharedKey,
                 'transIDMerchant' => $transIDMerchant,

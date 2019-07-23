@@ -15,36 +15,29 @@
         </div>
         <div class="collapse navbar-collapse" id="main-navbar">
             <ul class="navbar-nav mr-auto w-100 justify-content-left clearfix">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#hero-area">
-                        Home
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#feature">
-                        Tentang
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#services">
-                        Fitur
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#contact">
-                        Contact
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{route('auth.indexSignUp')}}">
-                        Sign up
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{route('auth.indexLogin')}}">
-                        Login
-                    </a>
-                </li>
+                @if(session()->has('kudaki-token'))
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('home.organizer')}}">
+                            Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('transactions')}}">
+                            Invoices
+                        </a>
+                    </li>
+                @else
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('auth.indexSignUp')}}">
+                            Sign up
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('auth.indexLogin')}}">
+                            Login
+                        </a>
+                    </li>
+                @endif
             </ul>
         </div>
     </div>

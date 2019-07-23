@@ -41,58 +41,88 @@
             </div>
 
             <form method="post" action="https://staging.doku.com/Suite/Receive">
+                <input class="form-control filled" id="WORDS" name="WORDS" type="text"
+                       value="{{$sha1Words}}" hidden readonly/>
 
-    Words
-    <input class="form-control filled" id="WORDS" name="WORDS" type="text" value="{{$sha1Words}}" /><br>
-    Trans ID
-    <input name="TRANSIDMERCHANT" id="TRANSIDMERCHANT" type="text" maxlength="120" class="form-control filled" value="{{$transIDMerchant}}" /><br>
-    Mall ID
-    <input name="MALLID" id="MALLID" type="text" placeholder="Mall ID" maxlength="120" value="{{$mallID}}"/><br>
-    Amount
-    <input name="AMOUNT" id="amount" type="text" class="form-control filled" value="{{$amount}}" /><br>
-    Shared Key
-    <input name="SHAREDKEY" id="SHAREDKEY" type="text" maxlength="120" class="form-control" value="{{$sharedKey}}" /><br>
+                <div class="form-group row">
+                    <label for="example-text-input" class="col-2 col-form-label">Transaction ID Merchant</label>
+                    <div class="col-6">
+                        <input name="TRANSIDMERCHANT" id="TRANSIDMERCHANT" type="text" maxlength="120"
+                               class="form-control filled" value="{{$transIDMerchant}}" readonly/>
+                    </div>
+                </div>
 
-    Basket
-    <input name="Basket" id="Basket" type="text" maxlength="120" class="form-control filled" value="{{$res_data["data"]["BASKET"]}}" /><br>
-    Chain Merchant
-    <input name="CHAINMERCHANT" id="chainmerchant" type="text" maxlength="120" class="form-control filled" value="NA" /><br>
-    Session ID
-    <input name="SESSIONID" id="SESSIONID" type="text" class="form-control filled" value="740ogm6ifxi65wn" /><br>
-    Request date time
-    <input name="REQUESTDATETIME" id="REQUESTDATETIME" type="text" class="form-control filled"value="{{$res_data["data"]["REQUESTDATETIME"]}}" /><br>
-    Service ID
-    <input name="SERVICEID" id="SERVICEID" type="hidden" class="form-control" value="3" /><br>
-    Currency
-    <input name="CURRENCY" id="CURRENCY" type="text" class="form-control filled" value="{{$res_data["data"]["CURRENCY"]}}" /><br>
-    Purchase Currency
-    <input name="PURCHASECURRENCY" id="PURCHASECURRENCY" type="text" class="form-control filled" value="{{$res_data["data"]["PURCHASECURRENCY"]}}" /><br>
-    Purchase Amount
-    <input name="PURCHASEAMOUNT" id="PURCHASEAMOUNT" type="text" maxlength="120" class="form-control filled" value="{{$purchaseAmount}}" /><br>
-    Payment channel
-    <select name="PAYMENTCHANNEL" id="PAYMENTCHANNEL" class="form-control">
-      <option value="">All</option>
-    </select><br><br>
-    Data diri<br><br>
-    Name
-    <input name="NAME" id="NAME" type="text" class="form-control filled" value="{{$res_data["data"]["NAME"]}}" /><br>
-    Email
-    <input name="EMAIL" id="EMAIL" type="text" class="form-control filled" value="{{$res_data["data"]["EMAIL"]}}" /><br>
-    Mobile Phone
-    <input name="MOBILEPHONE" id="MOBILEPHONE" type="text" class="form-control filled" value="08111111111" /><br>
-    Address
-    <input name="ADDRESS" id="ADDRESS" type="text" class="form-control filled" value="Jl. Jendral Sudirman" /><br>
-    Country
-    <input name="COUNTRY" id="COUNTRY" type="text" class="form-control filled" value="ID" /><br>
-    Zip Code
-    <input name="ZIPCODE" id="ZIPCODE" type="text" class="form-control filled" value="16710" /><br>
-    City
-    <input name="CITY" id="CITY" type="City" class="form-control filled" value="Jakarta" /><br>
+                <input name="MALLID" id="MALLID" type="text" maxlength="120"
+                       value="{{$mallID}}" hidden readonly/>
 
+                <div class="form-group row">
+                    <label for="example-text-input" class="col-2 col-form-label">Amount</label>
+                    <div class="col-6">
+                        <input name="AMOUNT" id="amount" type="text" class="form-control filled"
+                               value="{{$purchaseAmount}}" readonly/>
+                    </div>
+                </div>
 
-    <button class="btn-default" type="submit">TEST PAYMENT</button>
+                <input name="SHAREDKEY" id="SHAREDKEY" type="text" maxlength="120" class="form-control"
+                       value="{{$sharedKey}}" hidden readonly/>
 
-</form>
+                <input name="Basket" id="Basket" type="text" maxlength="120" class="form-control filled"
+                       value="{{$res_data["data"]["BASKET"]}}" hidden readonly/>
+
+                <input name="CHAINMERCHANT" id="chainmerchant" type="text" maxlength="120"
+                       class="form-control filled"
+                       value="NA" hidden readonly/>
+
+                <input name="SESSIONID" id="SESSIONID" type="text" class="form-control filled"
+                       value="{{$res_data["data"]["SESSIONID"]}}" hidden readonly/>
+
+                <div class="form-group row">
+                    <label for="example-text-input" class="col-2 col-form-label">Request Date Time</label>
+                    <div class="col-6">
+                        <input name="REQUESTDATETIME" id="REQUESTDATETIME" type="text" class="form-control filled"
+                               value="{{$res_data["data"]["REQUESTDATETIME"]}}" readonly/>
+                    </div>
+                </div>
+
+                <input name="SERVICEID" id="SERVICEID" type="hidden" class="form-control" value="3" hidden readonly/>
+
+                <input name="CURRENCY" id="CURRENCY" type="text" class="form-control filled"
+                       value="{{$res_data["data"]["CURRENCY"]}}" hidden readonly/>
+
+                <input name="PURCHASECURRENCY" id="PURCHASECURRENCY" type="text" class="form-control filled"
+                       value="{{$res_data["data"]["PURCHASECURRENCY"]}}" hidden readonly/>
+
+                <input name="PURCHASEAMOUNT" id="PURCHASEAMOUNT" type="text" maxlength="120"
+                       class="form-control filled"
+                       value="{{$purchaseAmount}}" hidden readonly/>
+
+                <input name="PAYMENTCHANNEL" id="PAYMENTCHANNEL" type="text" maxlength="120"
+                       class="form-control filled"
+                       value="" hidden readonly/>
+
+                <div class="form-group row">
+                    <label for="example-text-input" class="col-2 col-form-label">Name</label>
+                    <div class="col-6">
+                        <input name="NAME" id="NAME" type="text" class="form-control filled"
+                               value="{{$res_data["data"]["NAME"]}}" readonly/>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="example-text-input" class="col-2 col-form-label">Email</label>
+                    <div class="col-6">
+                        <input name="EMAIL" id="EMAIL" type="text" class="form-control filled"
+                               value="{{$res_data["data"]["EMAIL"]}}" readonly/>
+                    </div>
+                </div>
+
+                <div class="submit-button">
+                    <button class="btn btn-common" id="form-submit" type="submit">Submit</button>
+                    <div id="msgSubmit" class="h3 text-center hidden"></div>
+                    <div class="clearfix"></div>
+                </div>
+
+            </form>
         </div>
     </section>
 @endsection

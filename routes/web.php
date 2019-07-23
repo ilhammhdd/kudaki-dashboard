@@ -18,3 +18,4 @@ Route::get('/login', ['uses' => 'AuthController@indexLogin', 'as' => 'auth.index
 Route::post('/login', ['uses' => 'AuthController@login', 'as' => 'auth.login']);
 Route::get('/failed', ['uses' => 'HomeController@failed', 'as' => 'failed']);
 Route::post('/event', ['uses' => 'EventController@addEvent', 'as' => 'event.add']);
+Route::get('/transactions', ['uses' => 'HomeController@transactions', 'as' => 'transactions']);
