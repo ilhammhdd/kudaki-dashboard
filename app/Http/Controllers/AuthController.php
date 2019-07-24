@@ -16,7 +16,8 @@ class AuthController extends Controller
     public function signUp(Request $request)
     {
         $client = new Client(['base_uri' => env("GATEWAY_HOST")]);
-        try {$client->request('POST', 'signup', [
+        try {
+            $client->request('POST', 'signup', [
                 'multipart' => [
                     [
                         'name' => 'full_name',
@@ -41,7 +42,8 @@ class AuthController extends Controller
                 ]
             ]);
         } catch (ClientException $e) {
-            return view('layouts.failed', ['res_stat_code' => $e->getResponse()->getStatusCode(), 'res_message' => $e->getMessage()]);
+            $responseBody = json_decode($e->getResponse()->getBody());
+            return view('layouts.failed', ['res_stat_code' => $e->getResponse()->getStatusCode(), 'res_body' => $responseBody]);
         }
 
         return redirect()->route('auth.login');

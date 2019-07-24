@@ -6,7 +6,7 @@ use Exception;
 use DateTime;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\BadResponseException;
-use GuzzleHttp\Exception\GuzzleException;
+use GuzzleHttp\Exception\ClientException;
 use Illuminate\Http\Request;
 
 class EventController extends Controller
@@ -75,8 +75,9 @@ class EventController extends Controller
                 ]
             ]);
             return $response;
-        } catch (GuzzleException $e) {
-            return view('layouts.failed', ['res_stat_code' => $e->getCode(), 'res_message' => $e->getMessage()]);
+        } catch (ClientException $e) {
+            $responseBody = json_decode($e->getResponse()->getBody());
+            return view('layouts.failed', ['res_stat_code' => $e->getResponse()->getStatusCode(), 'res_body' => $responseBody]);
         }
     }
 }

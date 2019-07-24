@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 
 use GuzzleHttp\Client;
-use GuzzleHttp\Exception\GuzzleException;
+use GuzzleHttp\Exception\ClientException;
 
 class HomeController extends Controller
 {
@@ -35,8 +35,9 @@ class HomeController extends Controller
             $response = $client->request('GET', 'event-payment/transactions', [
                 'headers' => ['Kudaki-Token' => session()->get('kudaki-token')]
             ]);
-        } catch (GuzzleException $e) {
-            return view('layouts.failed', ['res_stat_code' => $e->getCode(), 'res_message' => $e->getMessage()]);
+        } catch (ClientException $e) {
+            $responseBody = json_decode($e->getResponse()->getBody());
+            return view('layouts.failed', ['res_stat_code' => $e->getResponse()->getStatusCode(), 'res_body' => $responseBody]);
         }
         $responseBodyJSON = $response->getBody()->getContents();
         $responseBodyDecoded = json_decode($responseBodyJSON, true);

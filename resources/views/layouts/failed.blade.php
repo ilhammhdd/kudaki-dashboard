@@ -31,7 +31,7 @@
 
 @section('bodyContent')
     <h1 style="font-weight:bold;margin: auto;">{{$res_stat_code}}</h1>
-    <p>{{$res_message}}</p>
+    <p>{{$res_body}}</p>
 @endsection
 
 @section('footer')
