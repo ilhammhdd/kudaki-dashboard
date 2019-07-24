@@ -31,7 +31,9 @@
 
 @section('bodyContent')
     <h1 style="font-weight:bold;margin: auto;">{{$res_stat_code}}</h1>
-    <p>{{$res_body}}</p>
+    @foreach($res_body["errors"] as $error)
+        <p>{{$error}}</p><br>
+    @endforeach
 @endsection
 
 @section('footer')
