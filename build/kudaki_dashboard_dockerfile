@@ -1,6 +1,12 @@
 FROM php:fpm-alpine
 
+RUN apk update
+RUN apk upgrade
+RUN apk add --no-cache composer
+
 WORKDIR /var/www/kudaki-dashboard/
 COPY . /var/www/kudaki-dashboard/
+
+RUN composer install
 
 ENTRYPOINT php-fpm
