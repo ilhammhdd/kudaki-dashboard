@@ -1,11 +1,21 @@
 version: '3.3'
 
 services:
-  web:
-    container_name: ${APP_NAME}_web
-    build:
-      context: ./docker/web
-    ports:
-      - 80
+  kudaki_dashboard:
+    image: php:fpm-alpine
+    container_name: kudaki_dashboard_container
     volumes:
-      - ./:/var/www/app
+      - .:/var/www/kudaki-dashboard
+    entrypoint:
+      - php-fpm
+  nginx:
+    image: nginx:alpine
+    container_name: nginx_container
+    volumes_from:
+      - kudaki_dashboard
+    volumes:
+      - ./build/nginx.conf:/etc/nginx/conf.d/default.conf
+    links:
+      - kudaki_dashboard
+    ports:
+      - 8080:80
