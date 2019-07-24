@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-    Sign Up
+    Transactions
 @endsection
 
 @section('css.addition')
@@ -18,7 +18,7 @@
             <table id="invoices" class="display" style="width: 100%;">
                 <thead>
                 <tr>
-                    <th>Amount</th>
+                    <th>Purchase Amount</th>
                     <th>Transaction Id Merchant</th>
                     <th>Request Date Time</th>
                     <th>Session Id</th>
@@ -28,17 +28,19 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($response['data']['invoices'] as $invoice)
-                    <tr>
-                        <td>{{$invoice["amount"]}}</td>
-                        <td>{{$invoice["transaction_id_merchant"]}}</td>
-                        <td>{{$invoice["request_date_time"]}}</td>
-                        <td>{{$invoice["session_id"]}}</td>
-                        <td>{{$invoice["name"]}}</td>
-                        <td>{{$invoice["email"]}}</td>
-                        <td>{{$invoice["status"]}}</td>
-                    </tr>
-                @endforeach
+                @if($response['data']['invoices']!=null)
+                    @foreach($response['data']['invoices'] as $invoice)
+                        <tr>
+                            <td>{{$invoice["purchase_amount"]}}</td>
+                            <td>{{$invoice["transaction_id_merchant"]}}</td>
+                            <td>{{$invoice["request_date_time"]}}</td>
+                            <td>{{$invoice["session_id"]}}</td>
+                            <td>{{$invoice["name"]}}</td>
+                            <td>{{$invoice["email"]}}</td>
+                            <td>{{$invoice["status"]}}</td>
+                        </tr>
+                    @endforeach
+                @endif
                 </tbody>
             </table>
         </div>
