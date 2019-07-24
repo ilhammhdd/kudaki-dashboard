@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use GuzzleHttp\Client;
-use GuzzleHttp\Exception\GuzzleException;
+use GuzzleHttp\Exception\ClientException;
 use Illuminate\Http\Request;
-use function MongoDB\BSON\fromJSON;
 
 class AuthController extends Controller
 {
@@ -17,8 +16,7 @@ class AuthController extends Controller
     public function signUp(Request $request)
     {
         $client = new Client(['base_uri' => env("GATEWAY_HOST")]);
-        try {
-            $response = $client->request('POST', 'signup', [
+        try {$client->request('POST', 'signup', [
                 'multipart' => [
                     [
                         'name' => 'full_name',
@@ -42,8 +40,8 @@ class AuthController extends Controller
                     ]
                 ]
             ]);
-        } catch (GuzzleException $e) {
-            return view('layouts.failed', ['res_stat_code' => $e->getCode(), 'res_message' => $e->getMessage()]);
+        } catch (ClientException $e) {
+            return view('layouts.failed', ['res_stat_code' => $e->getResponse()->getStatusCode(), 'res_message' => $e->getMessage()]);
         }
 
         return redirect()->route('auth.login');
@@ -70,8 +68,9 @@ class AuthController extends Controller
                     ]
                 ]
             ]);
-        } catch (GuzzleException $e) {
-            return view('layouts.failed', ['res_stat_code' => $e->getCode(), 'res_message' => $e->getMessage()]);
+        } catch (ClientException $e) {
+            $responseBody = json_decode($e->getResponse()->getBody());
+            return view('layouts.failed', ['res_stat_code' => $e->getResponse()->getStatusCode(), 'res_body' => $responseBody]);
         }
         $responseBodyJSON = $response->getBody()->getContents();
         $responseBodyDecoded = json_decode($responseBodyJSON, true);
