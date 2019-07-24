@@ -23,7 +23,7 @@ services:
       - kudaki-dashboard-project:/var/www/kudaki-dashboard
       - ./build/nginx.conf:/etc/nginx/conf.d/default.conf
     depends_on:
-      - kudaki_dashboard
+      - kudaki_dashboard_service
     ports:
       - 8080:80
     labels:
