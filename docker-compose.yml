@@ -1,13 +1,17 @@
 version: '3.3'
 
 services:
-  kudaki_dashboard:
+  kudaki_dashboard_service:
     build:
       context: .
       dockerfile: ./build/kudaki_dashboard_dockerfile
     container_name: kudaki_dashboard_container
     volumes:
       - kudaki-dashboard-project:/var/www/kudaki-dashboard
+    networks:
+      kudaki-docker-net:
+        aliases:
+          - kudaki_dashboard_service
   nginx:
     image: nginx:alpine
     container_name: nginx_container
