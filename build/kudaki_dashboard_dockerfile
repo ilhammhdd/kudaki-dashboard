@@ -6,4 +6,6 @@ RUN apk upgrade
 WORKDIR /var/www/kudaki-dashboard/
 COPY . /var/www/kudaki-dashboard/
 
+RUN chown -R www-data:www-data /var/www
+
 ENTRYPOINT php-fpm
