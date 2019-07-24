@@ -35,15 +35,15 @@ class EventController extends Controller
 
             $responseBodyJSON = $response->getBody()->getContents();
             $responseBodyDecoded = json_decode($responseBodyJSON, true);
-//            $amount = (string)$responseBodyDecoded ["data"]["AMOUNT"] . '.00';
             $purchaseAmount = (string)$responseBodyDecoded ["data"]["PURCHASEAMOUNT"] . '.00';
             $mallID = (string)env("MALLID");
             $sharedKey = (string)env("SHAREDKEY");
             $transIDMerchant = (string)"INVOICE-" . $responseBodyDecoded["data"]["TRANSIDMERCHANT"];
 
-            $words = $purchaseAmount. $mallID . $sharedKey . $transIDMerchant;
+            $words = $purchaseAmount . $mallID . $sharedKey . $transIDMerchant;
             $sha1Words = sha1($words);
 
+            $this->triggerPaymentRequestKudakiWebhook($transIDMerchant, $responseBodyDecoded ["data"]["SESSIONID"], $sha1Words);
 
             return view('doku_invoice', [
                 'res_data' => $responseBodyDecoded,
@@ -58,6 +58,25 @@ class EventController extends Controller
             return view('layouts.failed', ['res_stat_code' => $bre->getCode(), 'res_body' => $decodedResBody]);
         } catch (Exception $e) {
             var_dump($e);
+            return $e;
+        }
+    }
+
+    public function triggerPaymentRequestKudakiWebhook($transactionIdMerchant, $sessionId, $hashedWords)
+    {
+        $client = new Client(['base_uri' => env("GATEWAY_HOST")]);
+        try {
+            $response = $client->request('POST', 'event-payment/doku/payment-request', [
+                'headers' => ['Kudaki-Token' => session()->get('kudaki-token')],
+                'multipart' => [
+                    ['name' => 'transaction_id_merchant', 'contents' => $transactionIdMerchant],
+                    ['name' => 'session_id', 'contents' => $sessionId],
+                    ['name' => 'hashed_words', 'contents' => $hashedWords],
+                ]
+            ]);
+            return $response;
+        } catch (GuzzleException $e) {
+            return view('layouts.failed', ['res_stat_code' => $e->getCode()]);
         }
     }
 }
