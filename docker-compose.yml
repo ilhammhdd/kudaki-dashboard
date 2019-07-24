@@ -19,3 +19,7 @@ services:
       - kudaki_dashboard
     ports:
       - 8080:80
+    labels:
+      - "traefik.docker.network=${DOCKER_NETWORK}"
+      - "traefik.rest.frontend.rule=Host:${REST_SUBDOMAIN}"
+      - "traefik.rest.port=${REST_PORT}"
