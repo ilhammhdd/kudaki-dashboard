@@ -22,3 +22,8 @@ services:
       - "traefik.docker.network=${DOCKER_NETWORK}"
       - "traefik.rest.frontend.rule=Host:${REST_SUBDOMAIN}"
       - "traefik.rest.port=${REST_PORT}"
+
+volumes:
+  kudaki-dashboard-project:
+    external:
+      name: kudaki-dashboard-project
