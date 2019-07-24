@@ -42,7 +42,7 @@ class AuthController extends Controller
                 ]
             ]);
         } catch (ClientException $e) {
-            $responseBody = json_decode($e->getResponse()->getBody());
+            $responseBody = json_decode($e->getResponse()->getBody(),true);
             return view('layouts.failed', ['res_stat_code' => $e->getResponse()->getStatusCode(), 'res_body' => $responseBody]);
         }
 
@@ -71,7 +71,7 @@ class AuthController extends Controller
                 ]
             ]);
         } catch (ClientException $e) {
-            $responseBody = json_decode($e->getResponse()->getBody());
+            $responseBody = json_decode($e->getResponse()->getBody(),true);
             return view('layouts.failed', ['res_stat_code' => $e->getResponse()->getStatusCode(), 'res_body' => $responseBody]);
         }
         $responseBodyJSON = $response->getBody()->getContents();

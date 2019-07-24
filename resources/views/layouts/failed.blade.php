@@ -30,10 +30,12 @@
 @endsection
 
 @section('bodyContent')
-    <h1 style="font-weight:bold;margin: auto;">{{$res_stat_code}}</h1>
-    @foreach($res_body["errors"] as $error)
-        <p>{{$error}}</p><br>
-    @endforeach
+    <div class="container">
+        <h1 style="font-weight:bold;margin: auto;">{{$res_stat_code}}</h1>
+        @foreach($res_body["errors"] as $error)
+            <p>{{$error}}</p><br>
+        @endforeach
+    </div>
 @endsection
 
 @section('footer')
