@@ -13,6 +13,12 @@
 @endsection
 
 @section('bodyContent')
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
     <section id="sign-up" class="section-padding">
         <div class="container">
             <table id="invoices" class="display" style="width: 100%;">
