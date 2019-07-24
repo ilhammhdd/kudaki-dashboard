@@ -11,6 +11,10 @@ services:
   nginx:
     image: nginx:alpine
     container_name: nginx_container
+    networks:
+      kudaki-docker-net:
+        aliases:
+          - kudaki_nginx_service
     volumes:
       - kudaki-dashboard-project:/var/www/kudaki-dashboard
       - ./build/nginx.conf:/etc/nginx/conf.d/default.conf
@@ -27,3 +31,7 @@ volumes:
   kudaki-dashboard-project:
     external:
       name: kudaki-dashboard-project
+
+networks:
+  kudaki-docker-net:
+    external: true
