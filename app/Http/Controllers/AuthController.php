@@ -79,4 +79,8 @@ class AuthController extends Controller
 
         return redirect()->route('home.organizer');
     }
+
+    public function logout(){
+        session()->flush();
+    }
 }
