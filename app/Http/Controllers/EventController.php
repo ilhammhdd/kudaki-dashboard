@@ -76,7 +76,7 @@ class EventController extends Controller
             ]);
             return $response;
         } catch (GuzzleException $e) {
-            return view('layouts.failed', ['res_stat_code' => $e->getCode()]);
+            return view('layouts.failed', ['res_stat_code' => $e->getCode(), 'res_message' => $e->getMessage()]);
         }
     }
 }

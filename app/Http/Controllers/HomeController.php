@@ -36,7 +36,7 @@ class HomeController extends Controller
                 'headers' => ['Kudaki-Token' => session()->get('kudaki-token')]
             ]);
         } catch (GuzzleException $e) {
-            return view('layouts.failed', ['res_stat_code' => $e->getCode()]);
+            return view('layouts.failed', ['res_stat_code' => $e->getCode(), 'res_message' => $e->getMessage()]);
         }
         $responseBodyJSON = $response->getBody()->getContents();
         $responseBodyDecoded = json_decode($responseBodyJSON, true);

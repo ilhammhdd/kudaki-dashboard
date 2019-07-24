@@ -22,8 +22,6 @@
                     <th>Transaction Id Merchant</th>
                     <th>Request Date Time</th>
                     <th>Session Id</th>
-                    <th>Name</th>
-                    <th>Email</th>
                     <th>Status</th>
                 </tr>
                 </thead>
@@ -35,8 +33,6 @@
                             <td>{{$invoice["transaction_id_merchant"]}}</td>
                             <td>{{$invoice["request_date_time"]}}</td>
                             <td>{{$invoice["session_id"]}}</td>
-                            <td>{{$invoice["name"]}}</td>
-                            <td>{{$invoice["email"]}}</td>
                             <td>{{$invoice["status"]}}</td>
                         </tr>
                     @endforeach

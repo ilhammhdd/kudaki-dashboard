@@ -43,7 +43,7 @@ class AuthController extends Controller
                 ]
             ]);
         } catch (GuzzleException $e) {
-            return view('layouts.failed', ['res_stat_code' => $e->getCode()]);
+            return view('layouts.failed', ['res_stat_code' => $e->getCode(), 'res_message' => $e->getMessage()]);
         }
 
         return redirect()->route('auth.login');
@@ -71,7 +71,7 @@ class AuthController extends Controller
                 ]
             ]);
         } catch (GuzzleException $e) {
-            return view('layouts.failed', ['res_stat_code' => $e->getCode()]);
+            return view('layouts.failed', ['res_stat_code' => $e->getCode(), 'res_message' => $e->getMessage()]);
         }
         $responseBodyJSON = $response->getBody()->getContents();
         $responseBodyDecoded = json_decode($responseBodyJSON, true);
@@ -80,7 +80,8 @@ class AuthController extends Controller
         return redirect()->route('home.organizer');
     }
 
-    public function logout(){
+    public function logout()
+    {
         session()->flush();
         return redirect()->route('home.landing');
     }
