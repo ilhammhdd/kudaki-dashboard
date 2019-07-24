@@ -1,0 +1,6 @@
+FROM php:fpm-alpine
+
+WORKDIR /var/www/kudaki-dashboard/
+COPY . /var/www/kudaki-dashboard/
+
+ENTRYPOINT php-fpm
