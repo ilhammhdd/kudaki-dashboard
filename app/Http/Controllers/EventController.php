@@ -13,11 +13,20 @@ class EventController extends Controller
 {
     public function addEvent(Request $request)
     {
+        $durationFrom = $request->get('duration_from');
+        $durationTo = $request->get('duration_to');
+        $adDurationFrom = $request->get('ad_duration_from');
+        $adDurationTo = $request->get('ad_duration_to');
+
+        if ($durationFrom == null || $durationTo == null || $adDurationFrom == null || $adDurationTo == null) {
+            return view('layouts.failed', ['res_stat_code' => 400, 'res_body' => ['errors' => ["missing one of duration"]]]);
+        }
+
         try {
-            $durationFromDate = new DateTime($request->get('duration_from'));
-            $durationToDate = new DateTime($request->get('duration_to'));
-            $adDurationFrom = new DateTime($request->get('ad_duration_from'));
-            $adDurationTo = new DateTime($request->get('ad_duration_to'));
+            $durationFromDate = new DateTime();
+            $durationToDate = new DateTime();
+            $adDurationFromDate = new DateTime();
+            $adDurationToDate = new DateTime();
 
             $client = new Client(['base_uri' => env("GATEWAY_HOST")]);
             $response = $client->request('POST', 'event', [
@@ -28,8 +37,8 @@ class EventController extends Controller
                     ['name' => 'description', 'contents' => $request->get('description')],
                     ['name' => 'duration_from', 'contents' => $durationFromDate->getTimestamp()],
                     ['name' => 'duration_to', 'contents' => $durationToDate->getTimestamp()],
-                    ['name' => 'ad_duration_from', 'contents' => $adDurationFrom->getTimestamp()],
-                    ['name' => 'ad_duration_to', 'contents' => $adDurationTo->getTimestamp()]
+                    ['name' => 'ad_duration_from', 'contents' => $adDurationFromDate->getTimestamp()],
+                    ['name' => 'ad_duration_to', 'contents' => $adDurationToDate->getTimestamp()]
                 ]
             ]);
 
@@ -76,7 +85,7 @@ class EventController extends Controller
             ]);
             return $response;
         } catch (ClientException $e) {
-            $responseBody = json_decode($e->getResponse()->getBody(),true);
+            $responseBody = json_decode($e->getResponse()->getBody(), true);
             return view('layouts.failed', ['res_stat_code' => $e->getResponse()->getStatusCode(), 'res_body' => $responseBody]);
         }
     }
