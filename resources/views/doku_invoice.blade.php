@@ -58,7 +58,7 @@
                 <div class="form-group row">
                     <label for="example-text-input" class="col-2 col-form-label">Amount</label>
                     <div class="col-6">
-                        <input name="AMOUNT" id="AMOUNT" type="text" class="form-control filled"
+                        <input name="AMOUNT" id="amount" type="text" class="form-control filled"
                                value="{{$purchaseAmount}}" readonly/>
                     </div>
                 </div>
@@ -66,7 +66,7 @@
                 <input name="SHAREDKEY" id="SHAREDKEY" type="text" maxlength="120" class="form-control"
                        value="{{$sharedKey}}" hidden readonly/>
 
-                <input name="BASKET" id="BASKET" type="text" maxlength="120" class="form-control filled"
+                <input name="Basket" id="Basket" type="text" maxlength="120" class="form-control filled"
                        value="{{$res_data["data"]["BASKET"]}}" hidden readonly/>
 
                 <input name="CHAINMERCHANT" id="chainmerchant" type="text" maxlength="120"
