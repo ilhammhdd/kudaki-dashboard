@@ -23,10 +23,10 @@ class EventController extends Controller
         }
 
         try {
-            $durationFromDate = new DateTime();
-            $durationToDate = new DateTime();
-            $adDurationFromDate = new DateTime();
-            $adDurationToDate = new DateTime();
+            $durationFromDate = new DateTime($durationFrom);
+            $durationToDate = new DateTime($durationTo);
+            $adDurationFromDate = new DateTime($adDurationFrom);
+            $adDurationToDate = new DateTime($adDurationTo);
 
             $client = new Client(['base_uri' => env("GATEWAY_HOST")]);
             $response = $client->request('POST', 'event', [
