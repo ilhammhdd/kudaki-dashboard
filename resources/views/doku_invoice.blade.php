@@ -73,8 +73,10 @@
                        class="form-control filled"
                        value="NA" hidden readonly/>
 
+{{--                <input name="SESSIONID" id="SESSIONID" type="text" class="form-control filled"--}}
+{{--                       value="{{$res_data["data"]["SESSIONID"]}}" hidden readonly/>--}}
                 <input name="SESSIONID" id="SESSIONID" type="text" class="form-control filled"
-                       value="{{$res_data["data"]["SESSIONID"]}}" hidden readonly/>
+                       value="740ogm6ifxi65wn" hidden readonly/>
 
                 <div class="form-group row">
                     <label for="example-text-input" class="col-2 col-form-label">Request Date Time</label>
