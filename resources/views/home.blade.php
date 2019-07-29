@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-    Home Organizer
+    Event Registration
 @endsection
 
 @section('navBar')
@@ -35,7 +35,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="section-header text-left">
-                        <h2 class="section-title wow fadeInDown" data-wow-delay="0.3s">Event register form</h2>
+                        <h2 class="section-title wow fadeInDown" data-wow-delay="0.3s">Event registration form</h2>
                     </div>
                 </div>
             </div>
@@ -43,7 +43,7 @@
             <form id="sign-up" method="post" action="{{route('event.add')}}">
                 @csrf
                 <div class="form-group row">
-                    <label for="example-text-input" class="col-2 col-form-label">Nama</label>
+                    <label for="example-text-input" class="col-2 col-form-label">Nama Event</label>
                     <div class="col-6">
                         <input class="form-control" type="text" value="" id="name" name="name">
                     </div>

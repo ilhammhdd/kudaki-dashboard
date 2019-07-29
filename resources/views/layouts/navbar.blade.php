@@ -49,41 +49,34 @@
 
     <!-- Mobile Menu Start -->
     <ul class="mobile-menu navbar-nav">
-        <li>
-            <a class="page-scroll" href="#hero-area">
-                Home
-            </a>
-        </li>
-        <li>
-            <a class="page-scroll" href="#services">
-                Services
-            </a>
-        </li>
-        <li>
-            <a class="page-scroll" href="#feature">
-                feature
-            </a>
-        </li>
-        <li>
-            <a class="page-scroll" href="#team">
-                Team
-            </a>
-        </li>
-        <li>
-            <a class="page-scroll" href="#testimonial">
-                Testimonial
-            </a>
-        </li>
-        <li>
-            <a class="page-scroll" href="#pricing">
-                Pricing
-            </a>
-        </li>
-        <li>
-            <a class="page-scroll" href="#contact">
-                Contact
-            </a>
-        </li>
+        @if(session()->has('kudaki-token'))
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('home.organizer')}}">
+                    Home
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('transactions')}}">
+                    Invoices
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('logout')}}">
+                    Logout
+                </a>
+            </li>
+        @else
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('auth.indexSignUp')}}">
+                    Sign up
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('auth.indexLogin')}}">
+                    Login
+                </a>
+            </li>
+        @endif
     </ul>
     <!-- Mobile Menu End -->
 
