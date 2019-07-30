@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-    Login
+    Failed
 @endsection
 
 @section('navBar')
@@ -32,7 +32,7 @@
 @section('bodyContent')
     <div class="container">
         <h1 style="font-weight:bold;margin: auto;">{{$res_stat_code}}</h1>
-        @foreach($res_body["errors"] as $error)
+        @foreach($res_body['errors'] as $error)
             <p>{{$error}}</p><br>
         @endforeach
     </div>

@@ -20,3 +20,5 @@ Route::get('/failed', ['uses' => 'HomeController@failed', 'as' => 'failed']);
 Route::post('/event', ['uses' => 'EventController@addEvent', 'as' => 'event.add']);
 Route::get('/transactions', ['uses' => 'HomeController@transactions', 'as' => 'transactions']);
 Route::get('/logout', ['uses' => 'AuthController@logout', 'as' => 'logout']);
+Route::get('/transaction/details', ['uses' => 'HomeController@transactionDetails', 'as' => 'transaction.details']);
+Route::post('/publish', ['uses' => 'EventController@publish', 'as' => 'publish']);

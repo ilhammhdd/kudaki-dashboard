@@ -40,7 +40,7 @@
                 </div>
             </div>
 
-            <form id="sign-up" method="post" action="{{route('event.add')}}">
+            <form id="sign-up" method="post" action="{{route('event.add')}}" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group row">
                     <label for="example-text-input" class="col-2 col-form-label">Nama Event</label>
@@ -88,6 +88,13 @@
                     <label for="exa mple-text-input" class="col-2 col-form-label">Ad Duration To</label>
                     <div class="col-6">
                         <input class="form-control" type="date" value="" id="ad_duration_to" name="ad_duration_to">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="exa mple-text-input" class="col-2 col-form-label">Poster</label>
+                    <div class="col-6">
+                        <input class="form-control" type="file" id="poster" name="poster">
                     </div>
                 </div>
 

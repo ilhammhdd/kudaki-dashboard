@@ -29,6 +29,7 @@
                     <th>Request Date Time</th>
                     <th>Session Id</th>
                     <th>Status</th>
+                    <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -40,6 +41,11 @@
                             <td>{{$invoice["request_date_time"]}}</td>
                             <td>{{$invoice["session_id"]}}</td>
                             <td>{{$invoice["status"]}}</td>
+                            <td>
+                                <a href="{{route('transaction.details')."?kudaki_event_uuid=".$invoice["kudaki_event_uuid"]}}" class="btn btn-info btn-sm" target="_blank">
+                                    <span class="glyphicon glyphicon-search"></span> Details
+                                </a>
+                            </td>
                         </tr>
                     @endforeach
                 @endif

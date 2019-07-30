@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
+use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
@@ -43,6 +44,27 @@ class HomeController extends Controller
         $responseBodyDecoded = json_decode($responseBodyJSON, true);
 
         return view('transaction', [
+            'response' => $responseBodyDecoded
+        ]);
+    }
+
+    public function transactionDetails(Request $request)
+    {
+        $client = new Client(['base_uri' => env("GATEWAY_HOST")]);
+        try {
+            $response = $client->request('GET', 'event', [
+                'query' => [
+                    'kudaki_event_uuid' => $request->query('kudaki_event_uuid')
+                ]
+            ]);
+        } catch (ClientException $e) {
+            $responseBody = json_decode($e->getResponse()->getBody());
+            return view('layouts.failed', ['res_stat_code' => $e->getResponse()->getStatusCode(), 'res_body' => $responseBody]);
+        }
+        $responseBodyJSON = $response->getBody()->getContents();
+        $responseBodyDecoded = json_decode($responseBodyJSON, true);
+
+        return view('transaction_details', [
             'response' => $responseBodyDecoded
         ]);
     }
